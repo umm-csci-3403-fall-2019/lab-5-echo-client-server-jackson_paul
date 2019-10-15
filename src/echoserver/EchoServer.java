@@ -24,9 +24,9 @@ public class EchoServer {
 
         int x;
         while((x = input.read())!=-1){
-            output.write(x);
+	       	output.write(x);
         }
-
+	output.flush();
         // Close the client socket since we're done.
         client.close();
         input.close();

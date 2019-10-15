@@ -29,7 +29,7 @@ public class EchoClient {
         output.flush();
         System.out.write(input.read());
       }
-
+	System.out.flush();
       // Close the socket when we're done reading from it
       socket.close();
       input.close();
