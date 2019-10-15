@@ -19,15 +19,18 @@ public class EchoServer {
 
         // Construct a writer so we can write to the socket, thereby
         // sending something back to the client.
-        PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
+        InputStream input = client.getInputStream();
+        OutputStream output = client.getOutputStream();
 
         int x;
-        while((x=client.getOutputSteam().read())!=-1){
-            writer.write(x);
+        while((x = input.read())!=-1){
+            output.write(x);
         }
 
         // Close the client socket since we're done.
         client.close();
+        input.close();
+        output.close();
       }
     // *Very* minimal error handling.
     } catch (IOException ioe) {

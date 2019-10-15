@@ -21,15 +21,19 @@ public class EchoClient {
 
       // Get the input stream so we can read from that socket
       InputStream input = socket.getInputStream();
-
+      OutputStream output = socket.getOutputStream();
       // Print all the input we receive from the server
       int bite; //more like a byte
-      while ((bite = input.read()) != -1) {
-        System.out.write(bite);
+      while ((bite = System.in.read()) != -1) {
+        output.write(bite);
+        output.flush();
+        System.out.write(input.read());
       }
 
       // Close the socket when we're done reading from it
       socket.close();
+      input.close();
+      output.close();
 
     // Provide some minimal error handling.
     } catch (ConnectException ce) {
