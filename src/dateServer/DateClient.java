@@ -1,9 +1,7 @@
-package echoserver;
 import java.net.*;
 import java.io.*;
 
-
-public class EchoClient {
+public class DateClient {
   public static final int portNumber = 6013;
 
   public static void main(String[] args) throws IOException {
@@ -21,11 +19,12 @@ public class EchoClient {
 
       // Get the input stream so we can read from that socket
       InputStream input = socket.getInputStream();
+      BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
       // Print all the input we receive from the server
-      int bite; //more like a byte
-      while ((bite = input.read()) != -1) {
-        System.out.write(bite);
+      String line;
+      while ((line = reader.readLine()) != null) {
+        System.out.println(line);
       }
 
       // Close the socket when we're done reading from it

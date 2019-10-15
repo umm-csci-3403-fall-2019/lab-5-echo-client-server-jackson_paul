@@ -1,9 +1,7 @@
-package echoserver;
 import java.net.*;
 import java.io.*;
 
-
-public class EchoServer {
+public class DateServer {
   public static final int portNumber = 6013;
 
   public static void main(String[] args) {
@@ -21,10 +19,8 @@ public class EchoServer {
         // sending something back to the client.
         PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
 
-        int x;
-        while((x=client.getOutputSteam().read())!=-1){
-            writer.write(x);
-        }
+        // Send the current date back tothe client.
+        writer.println(new java.util.Date().toString());
 
         // Close the client socket since we're done.
         client.close();
