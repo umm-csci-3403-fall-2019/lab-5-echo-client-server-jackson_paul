@@ -19,9 +19,9 @@ public class EchoClient {
       // Connect to the server
       Socket socket = new Socket(server, portNumber);
 
-      // Get the input stream so we can read from that socket
-      InputStream input = socket.getInputStream();
-      OutputStream output = socket.getOutputStream();
+      InputStream input = socket.getInputStream(); // Get the input stream so we can read from that socket
+      OutputStream output = socket.getOutputStream(); // Allows us to write to the socket
+
       // Print all the input we receive from the server
       int bite; //more like a byte
       while ((bite = System.in.read()) != -1) {
@@ -29,8 +29,10 @@ public class EchoClient {
         output.flush();
         System.out.write(input.read());
       }
-	System.out.flush();
-      // Close the socket when we're done reading from it
+
+      // Flush before closing so we don't lose some extra bytes
+	    System.out.flush();
+      // Close the socket/input/output when we're done reading from it
       socket.close();
       input.close();
       output.close();

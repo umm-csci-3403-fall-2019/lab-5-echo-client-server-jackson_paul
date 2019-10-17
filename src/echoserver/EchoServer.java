@@ -13,7 +13,7 @@ public class EchoServer {
 
       // Run forever, which is common for server style services
       while (true) {
-        // Wait until someone connects, thereby requesting a date
+        // Wait until someone connects
         Socket client = sock.accept();
         System.out.println("Got a request!");
 
@@ -22,12 +22,16 @@ public class EchoServer {
         InputStream input = client.getInputStream();
         OutputStream output = client.getOutputStream();
 
+        // Reading from inputstream and writing to the client
         int x;
         while((x = input.read())!=-1){
 	       	output.write(x);
         }
-	output.flush();
-        // Close the client socket since we're done.
+
+        //flush output
+	      output.flush();
+
+        // Close the client socket/input/output since we're done.
         client.close();
         input.close();
         output.close();
